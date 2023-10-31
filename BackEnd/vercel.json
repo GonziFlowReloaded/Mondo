@@ -1,0 +1,6 @@
+{
+    "routes": [
+      { "src": "/api/express/:path*", "dest": "/js-api/index.js" },
+      { "src": "/api/python/:path*", "dest": "/ApiComm/manage.py" }
+    ]
+  }
