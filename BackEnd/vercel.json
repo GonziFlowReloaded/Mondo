@@ -1,7 +1,7 @@
 {
     "rewrites": [
-      {"source": "/api/express", "destination": "/js-api/index.js"},
-      {"source": "/api/python", "destination": "/ApiComm/manage.py"}
+      {"source": "/express", "destination": "/js-api/index.js"},
+      {"source": "/python", "destination": "/ApiComm/manage.py"}
       
     ]
   }
