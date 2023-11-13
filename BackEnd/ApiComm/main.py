@@ -27,13 +27,3 @@ def email_sender(Email: EmailSchema):
     
 
     return {"mensaje": "Correo enviado exitosamente"}
-
-@app.post('/discord_sender')
-async def discord_sender(message: Message):
-    try:
-        # Enviar el mensaje al canal #general usando la función del bot de Discord
-        await send_message_to_general_channel(message.content, general_channel_id)
-    except ValueError as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-    return {"message": "Mensaje enviado exitosamente"}
