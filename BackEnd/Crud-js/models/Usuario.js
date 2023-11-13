@@ -12,19 +12,29 @@ const usuarioSchema = mongoose.Schema(
       require: true,
       trim: true,
     },
-    email: {
+    dni: {
       type: String,
       require: true,
       trim: true,
       unique: true,
     },
-    toke: {
+    token: {
       type: String,
     },
+    confirmado:{
+      type:Boolean,
+      default:false
+    },
+    rol: {
+      type: String,
+      enum: ["admin", "profesor"],
+      default: "profesor",
+    },
+    
   
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 );
 

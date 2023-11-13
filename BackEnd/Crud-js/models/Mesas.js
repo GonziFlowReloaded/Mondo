@@ -9,20 +9,29 @@ const mesaSchema = mongoose.Schema(
     aula: {
       type: String,
     },
-    presidente: {
-      type: String,
-      ref:"Usuario",
-      require: true,
-    },
+    profesor: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Usuario",
+      },
+    ],
     fecha: {
       type: Date,
     },
+    hora: {
+      type: String, 
+    },
+
     alumnos: {
       type: String,
     },
+    creador: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario",
+    },
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 );
 
