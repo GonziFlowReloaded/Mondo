@@ -5,14 +5,22 @@ import {
   obtenerMesas,
   editarMesa,
   eliminarMesa,
+  agregarProfesor,
+  eliminarProfesor,
 } from "../controllers/mesasController.js";
+
+import checkAuth from "../middlewares/checkAuth.js";
 
 const router = express.Router();
 
-router.get("/", obtenerMesas);
-router.get("/:id", obtenerMesa);
-router.post("/", crearMesa);
-router.put("/:id", editarMesa);
-router.delete("/:id", eliminarMesa);
+router.post("/", checkAuth, crearMesa);
+router.get("/", checkAuth, obtenerMesas);
 
-export default router
+router.get("/:id", checkAuth, obtenerMesa);
+router.put("/:id", checkAuth, editarMesa);
+router.delete("/:id", checkAuth, eliminarMesa);
+
+router.post("/agregar-profesor/:id", checkAuth, agregarProfesor)
+router.post("/eliminar-profesor/:id", checkAuth, eliminarProfesor)
+
+export default router;
