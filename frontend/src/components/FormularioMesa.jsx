@@ -2,43 +2,44 @@ import { useState } from "react";
 import useMesas from "../hooks/useMesas";
 import { useNavigate } from "react-router-dom";
 
-const FormularioMesa =  () => {
+const FormularioMesa = () => {
   const [asignatura, setAsignatura] = useState("");
   const [aula, setAula] = useState("");
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [alumnos, setAlumnos] = useState("");
+  const [profesorF, setProfesorF] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-  const { alerta, setAlerta, submitMesa } = useMesas();
+  const { alerta, setAlerta, submitMesa,submitColaborador, profesor } = useMesas();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if ([asignatura, aula, fecha, hora, alumnos].includes("")) {
+    if ([asignatura, aula, fecha, hora, profesor, alumnos].includes("")) {
       setAlerta({ msg: "Todos los campos son obligatorios" });
       setTimeout(() => {
         setAlerta({});
       }, 3000);
 
-      return
+      return;
     }
 
-     await submitMesa({asignatura, aula, fecha, hora, alumnos})
+    await submitMesa({ asignatura, aula, fecha, hora, alumnos, profesor: profesor.nombre });
+    await submitColaborador(profesorF)
 
-     setAsignatura("")
-     setAula("")
-     setFecha("")
-     setHora("")
-     setAlumnos("")
+    setAsignatura("");
+    setAula("");
+    setFecha("");
+    setHora("");
+    setAlumnos("");
 
-     setTimeout(() => {
-        setAlerta({});
-        navigate("/admin");
-      }, 3000);
-
-    
+    setTimeout(() => {
+      setAlerta({});
+      navigate("/admin");
+    }, 3000);
   };
 
   return (
@@ -82,6 +83,25 @@ const FormularioMesa =  () => {
           id="aula"
           value={aula}
           onChange={(e) => setAula(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-5">
+        <label
+          className="text-slate-800 uppercase font-bold text-sm"
+          htmlFor="profesor"
+        >
+          Profesor
+        </label>
+
+        <input
+          className="border w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+          placeholder="Profesor"
+          type="text"
+          name=""
+          id="profesor"
+          value={profesorF}
+          onChange={(e) => setProfesorF(e.target.value)}
         />
       </div>
 

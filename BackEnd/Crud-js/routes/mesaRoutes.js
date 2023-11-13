@@ -5,6 +5,7 @@ import {
   obtenerMesas,
   editarMesa,
   eliminarMesa,
+  buscarProfesor,
   agregarProfesor,
   eliminarProfesor,
 } from "../controllers/mesasController.js";
@@ -20,7 +21,8 @@ router.get("/:id", checkAuth, obtenerMesa);
 router.put("/:id", checkAuth, editarMesa);
 router.delete("/:id", checkAuth, eliminarMesa);
 
-router.post("/agregar-profesor/:id", checkAuth, agregarProfesor)
-router.post("/eliminar-profesor/:id", checkAuth, eliminarProfesor)
+router.post("/profesores", checkAuth, buscarProfesor);
+router.post("/profesores/:id", checkAuth, agregarProfesor);
+router.delete("/profesores/:id", checkAuth, eliminarProfesor);
 
 export default router;

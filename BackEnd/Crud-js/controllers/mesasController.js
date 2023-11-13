@@ -1,4 +1,5 @@
 import Mesa from "../models/Mesas.js";
+import Usuario from "../models/Usuario.js";
 
 const crearMesa = async (req, res) => {
   // Verificar si el usuario tiene el rol de "admin"
@@ -112,6 +113,20 @@ const eliminarMesa = async (req, res) => {
   }
 };
 
+const buscarProfesor = async (req, res) => {
+  const {dni}=req.body
+
+  const usuario= await Usuario.findOne({dni})
+
+  if(!usuario){
+    const error= new Error("Usuario no encontrado")
+    return res.status(404).json({msg:error.message})
+  }
+
+  res.json(usuario)
+
+};
+
 const agregarProfesor = async (req, res) => {};
 
 const eliminarProfesor = async (req, res) => {};
@@ -121,6 +136,7 @@ export {
   obtenerMesas,
   editarMesa,
   eliminarMesa,
+  buscarProfesor,
   agregarProfesor,
   eliminarProfesor,
 };
