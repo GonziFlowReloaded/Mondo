@@ -2,7 +2,7 @@
     "builds":[
         {
             "src": "./src/main.jsx",
-            "use": "@vercel/vite"
+            "use": "@vercel/node"
         }
     ],
     "routes": [
